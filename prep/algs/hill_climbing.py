@@ -10,5 +10,6 @@ def hill_climbing(init_state: State, num_its: int):
             # new best neighbor
             if state < neighbour:
                 state = neighbour
+                break
 
     return state
