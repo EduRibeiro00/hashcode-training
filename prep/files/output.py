@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def output_to_filename(state, filename):
     """Outputs the state information to the filename."""
     f = open(filename, 'w')
