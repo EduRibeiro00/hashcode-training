@@ -4,7 +4,7 @@ class State(object):
   def __init__(self) -> None:
     pass
 
-  def get_all_neighbours(self, generator = True) -> list('State'):
+  def get_all_neighbours(self, generator=True) -> list('State'):
     return []
 
   def get_value(self) -> float:
