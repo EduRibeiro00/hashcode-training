@@ -72,7 +72,6 @@ class State():
         print('Pizzas:')
         for pizza in self.pizzas:
             print(pizza)
-        print('Allocations: ')
         print('*' * 50)
 
     def __eq__(self, o: 'State') -> bool:

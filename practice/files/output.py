@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-def output_to_filename(state, num_total_pizzas, filename):
+def output_to_filename(state, teams_with_pizzas, filename):
     """Outputs the state information to the filename."""
     f = open(filename, 'w')
-    f.write('{}\n'.format(num_total_pizzas))
+    f.write('{}\n'.format(teams_with_pizzas))
     for allocation in state.pizza_allocation['2']:
         if len(allocation.pizzas_for_team) < 1:
             continue
