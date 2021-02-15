@@ -1,6 +1,8 @@
 from files.input import parse_input
 from files.output import output_to_filename
+from state.pizza import PizzaAllocation
 import sys
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -8,4 +10,32 @@ if __name__ == '__main__':
         sys.exit(-1)
     
     state = parse_input(sys.argv[1])
-    output_to_filename(state, 'o.txt')
+    state.print()
+
+    num_total_pizzas = 0
+
+    for _ in range(state.num_teams_4):
+        pizzas_for_team = PizzaAllocation()
+        for _ in range(4):
+            inserted = pizzas_for_team.add_pizza(state.select_pizza_for_team(pizzas_for_team))
+            if inserted:
+                num_total_pizzas += 1
+        state.pizza_allocation['4'].append(pizzas_for_team)
+
+    for _ in range(state.num_teams_3):
+        pizzas_for_team = PizzaAllocation()
+        for _ in range(3):
+            inserted = pizzas_for_team.add_pizza(state.select_pizza_for_team(pizzas_for_team))
+            if inserted:
+                num_total_pizzas += 1
+        state.pizza_allocation['3'].append(pizzas_for_team)
+
+    for _ in range(state.num_teams_2):
+        pizzas_for_team = PizzaAllocation()
+        for _ in range(2):
+            inserted = pizzas_for_team.add_pizza(state.select_pizza_for_team(pizzas_for_team))
+            if inserted:
+                num_total_pizzas += 1
+        state.pizza_allocation['2'].append(pizzas_for_team)
+
+    output_to_filename(state, num_total_pizzas, 'o.txt')
