@@ -1,5 +1,6 @@
 import os
 import sys
+import math
 from files import read_input, parse_input, write_output
 
 
@@ -20,11 +21,11 @@ def main(args):
     street_car_count = {}
 
     for street_name in streets:
-        street_car_count[street_name] = 0
+        street_car_count[street_name] = []
 
     for car in cars:
         for street_name in car['path']:
-            street_car_count[street_name] += 1
+            street_car_count[street_name].append(car)
 
     intersections = {}
 
@@ -32,11 +33,37 @@ def main(args):
 
         semaphores = []
 
+        streets_total_car_dist = {}
+
         for street_name in streets:
             if streets[street_name]['int_end'] == i:
-                if street_car_count[street_name] != 0:
-                    semaphores.append((street_name, street_car_count[street_name])) 
+                if len(street_car_count[street_name]) != 0:
+                    semaphores.append((street_name, math.ceil(len(street_car_count[street_name]) * 0.60))) 
 
+        #             total_car_dist = 0
+        #             for car in street_car_count[street_name]:
+        #                 dist_to_int = 0
+
+        #                 for rua in car['path']:
+        #                     if rua != street_name:
+        #                         dist_to_int += streets[rua]['time']
+        #                     else:
+        #                         break
+
+        #                 dist_to_int += streets[street_name]['time']
+        #                 total_car_dist += dist_to_int
+                    
+        #             streets_total_car_dist[street_name] = total_car_dist
+
+        # dist_sum = 0
+        # for street in streets_total_car_dist:
+        #     dist_sum += streets_total_car_dist[street]
+
+        # for j, sem in enumerate(semaphores):
+
+        #     if dist_sum != 0:
+        #         semaphores[j] = (sem[0],math.ceil(sem[1] * (2 + streets_total_car_dist[street]/dist_sum)))
+        
         if semaphores:
             intersections[i] = semaphores
 
