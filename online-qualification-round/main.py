@@ -19,10 +19,11 @@ def main(args):
 
     street_car_count = {}
 
+    for street_name in streets:
+        street_car_count[street_name] = 0
+
     for car in cars:
         for street_name in car['path']:
-            if not streets[street_name]:
-                street_car_count[street_name] = 0
             street_car_count[street_name] += 1
 
     intersections = {}
@@ -36,10 +37,10 @@ def main(args):
                 if street_car_count[street_name] != 0:
                     semaphores.append((street_name, street_car_count[street_name])) 
 
-        intersections[i] = semaphores
+        if semaphores:
+            intersections[i] = semaphores
 
-
-    write_output(problem)
+    write_output(problem, intersections)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
