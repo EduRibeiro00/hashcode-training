@@ -1,13 +1,16 @@
 import os
 import sys
 import math
+# from random import perm
+import random
+import itertools
 from files import read_input, parse_input, write_output
 
 
 def main(args):
-    if len(args) != 1:
-        print('One argument expected: id of problem to solve (a, b, c, ...)')
-        sys.exit(-1)
+    # if len(args) != 1:
+    #     print('One argument expected: id of problem to solve (a, b, c, ...)')
+    #     sys.exit(-1)
 
     problem = args[0]
 
@@ -38,7 +41,7 @@ def main(args):
         for street_name in streets:
             if streets[street_name]['int_end'] == i:
                 if len(street_car_count[street_name]) != 0:
-                    semaphores.append((street_name, math.ceil(len(street_car_count[street_name]) * 0.60))) 
+                    semaphores.append((street_name, math.ceil(len(street_car_count[street_name]) * 0.01))) 
 
         #             total_car_dist = 0
         #             for car in street_car_count[street_name]:
@@ -65,7 +68,7 @@ def main(args):
         #         semaphores[j] = (sem[0],math.ceil(sem[1] * (2 + streets_total_car_dist[street]/dist_sum)))
         
         if semaphores:
-            intersections[i] = semaphores
+            intersections[i] = random.shuffle(semaphores)
 
     write_output(problem, intersections)
 
