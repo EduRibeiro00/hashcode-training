@@ -1,6 +1,6 @@
 import os
 import sys
-from files import read_input, parse_input, write_output
+from .files import read_input, parse_input, write_output
 
 
 def main(args):

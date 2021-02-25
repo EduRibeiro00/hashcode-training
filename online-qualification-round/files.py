@@ -1,7 +1,7 @@
 import os
 
 def read_input(problem):
-    in_path = os.path.join(os.path.dirname(__file__), 'input', f'{problem}')
+    in_path = os.path.join(os.path.dirname(__file__), 'input', f'{problem}.txt')
 
     with open(in_path) as f:
         input = f.readlines()
@@ -9,7 +9,10 @@ def read_input(problem):
     return input
 
 def parse_input(input):
-    # TODO: parse input
+
+
+
+
     pass
 
 
