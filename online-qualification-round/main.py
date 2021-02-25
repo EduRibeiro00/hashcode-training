@@ -1,6 +1,6 @@
 import os
 import sys
-from .files import read_input, parse_input, write_output
+from files import read_input, parse_input, write_output
 
 
 def main(args):
@@ -10,11 +10,9 @@ def main(args):
 
     problem = args[0]
 
-    read_input(problem)
+    lines = read_input(problem)
 
-    parse_input(input)
-
-
+    dur, n_intersections, n_streets, n_cars, n_bonus, streets, cars = parse_input(lines)
 
     write_output(problem)
 
