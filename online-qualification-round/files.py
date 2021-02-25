@@ -1,7 +1,7 @@
 import os
 
 def read_input(problem):
-    in_path = os.path.join(os.path.dirname(__file__), 'input', f'{problem}.txt')
+    in_path = os.path.join(os.path.dirname(__file__), 'input', '{}.txt'.format(problem))
 
     with open(in_path) as f:
         lines = f.readlines()
@@ -34,11 +34,17 @@ def parse_input(lines):
     return dur, n_intersections, n_streets, n_cars, n_bonus, streets, cars
 
 
-def write_output(problem):
+def write_output(problem, intersections):
     out_dir = os.path.join(os.path.dirname(__file__), 'output')
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, f'{problem}.out')
+    out_path = os.path.join(out_dir, '{}.out'.format(problem))
 
     with open(out_path, 'w') as out:
-        # TODO: write output
-        pass
+        out.write(str(len(intersections)) + '\n')
+
+        for id, v in intersections.items():
+            out.write(str(id) + '\n')
+            out.write(str(len(v)) + '\n')
+            for s, d in v:
+                out.write('{} {}\n'.format(s, d))
+

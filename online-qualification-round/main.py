@@ -14,7 +14,8 @@ def main(args):
 
     dur, n_intersections, n_streets, n_cars, n_bonus, streets, cars = parse_input(lines)
 
-    write_output(problem)
+    intersections = {}
+    write_output(problem, intersections)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
